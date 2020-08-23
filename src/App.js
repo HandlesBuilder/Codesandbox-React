@@ -1,5 +1,5 @@
 import React from "react";
-import { useHooks } from "./hook";
+import { useHooks } from "./components/hooks";
 import "./styles.css";
 
 export default function App() {

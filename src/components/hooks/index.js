@@ -7,11 +7,12 @@ export const useHooks = () => {
 
   useEffect(() => {
     async function fetchData() {
+      console.log("useHooks...");
       const response = await fetch(
         "https://my-json-server.typicode.com/TserHub/Json/hooks"
-      ).then(res => res.json());
+      ).then((res) => res.json());
 
-      setState(prevState => {
+      setState((prevState) => {
         return {
           ...prevState,
           ...response
