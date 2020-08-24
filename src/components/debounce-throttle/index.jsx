@@ -1,5 +1,5 @@
 import React from "react";
-import { debounce, throttle } from "./utils";
+import { debounce, throttle } from "../../utils/utils";
 
 export default function App() {
   const handleDebounce = debounce((e) => {
