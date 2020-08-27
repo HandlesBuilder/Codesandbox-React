@@ -1,0 +1,26 @@
+.form-demo label {
+  position: relative;
+  display: inline-block;
+  width: 80px;
+}
+
+.form-demo label::after {
+  content: ":";
+  position: absolute;
+}
+
+.form-demo .zh label {
+  margin: 0 10px 0 0;
+  text-align-last: justify;
+}
+
+.form-demo .en label {
+  margin: 0 10px 0 0;
+  text-align: right;
+}
+
+.form-demo label + input {
+  width: 235px;
+  padding: 0;
+  padding-inline-start: 1px;
+}
