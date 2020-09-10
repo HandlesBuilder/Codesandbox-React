@@ -1,7 +1,8 @@
 import React from "react";
+import { Form, Input, Button } from "antd";
 import "./index.css";
 
-export default function FormDemo() {
+function FormJS() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -59,3 +60,71 @@ export default function FormDemo() {
     </div>
   );
 }
+
+function FormAntd() {
+  const [form] = Form.useForm();
+
+  const onFinish = (values) => {
+    console.log(values);
+  };
+
+  return (
+    <Form
+      style={{
+        width: 300
+      }}
+      form={form}
+      onFinish={onFinish}
+    >
+      <Form.Item
+        label="username"
+        name="username"
+        rules={[
+          {
+            required: true,
+            whitespace: true,
+            /* transform: (val) => {
+              return val.replace(/^\s+|\s+$/g, "");
+            }, */
+            message: "Please input your username!"
+          }
+        ]}
+        /* getValueFromEvent={(e) => {
+          return e.target.value.replace(/^\s+|\s+$/g, "");
+        }} */
+        /* normalize={(value, prevValue, prevValues) => {
+          // console.log(value, '=>', prevValue,'=>', prevValues);
+          return value;
+        }} */
+      >
+        <Input allowClear />
+      </Form.Item>
+      <Form.Item
+        label="password"
+        name="password"
+        rules={[
+          {
+            required: true,
+            message: "Please input your password!"
+          }
+        ]}
+      >
+        <Input.Password allowClear />
+      </Form.Item>
+      <Form.Item>
+        <Button htmlType="submit">submit</Button>
+      </Form.Item>
+    </Form>
+  );
+}
+
+function FormDemo() {
+  return (
+    <>
+      <FormJS />
+      <FormAntd />
+    </>
+  );
+}
+
+export default FormDemo;
