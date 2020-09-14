@@ -1,6 +1,6 @@
 import React from "react";
 import { useHooks } from "./components/hooks";
-import RegExpHandler from "./components/reg-exp";
+import OverFlow from "./components/overflow";
 import "./styles.css";
 
 export default function App() {
@@ -9,7 +9,7 @@ export default function App() {
     <div className="App">
       <h1>Hello {state.name}</h1>
       <h2>Start editing to see some magic happen!</h2>
-      <RegExpHandler />
+      <OverFlow />
     </div>
   );
 }
