@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, Space } from "antd";
 import { EditOutlined } from "@ant-design/icons";
 import "./index.css";
 
@@ -62,7 +62,7 @@ function FormJS() {
   );
 }
 
-const InputComp = (props) => {
+/* const InputComp = (props) => {
   const { value } = props;
   const { form, ...rest } = props;
   const [bordered, setBordered] = useState(false);
@@ -127,6 +127,45 @@ const InputComp = (props) => {
       {showEdit ? <EditOutlined onClick={handleEdit} /> : null}
     </div>
   );
+}; */
+
+const AgeInputComp = (props) => {
+  const { value } = props;
+  const { name, form, ...rest } = props;
+  const [editing, setEditing] = useState(false);
+  const inputRef = useRef();
+  const handleBlur = (e) => {
+    setEditing(!e.target.value);
+  };
+  const handleEdit = () => {
+    setEditing(true);
+    setTimeout(() => {
+      inputRef.current.focus();
+    }, 350);
+  };
+  useEffect(() => {
+    if (!value) {
+      setEditing(true);
+      form.validateFields([name]);
+    }
+  }, [value, name, form]);
+  return (
+    <>
+      {!editing ? (
+        <Space style={{ width: "100%" }} align="start">
+          <span>{value}</span>
+          <EditOutlined onClick={handleEdit} />
+        </Space>
+      ) : null}
+      <Input
+        ref={inputRef}
+        style={{ display: !editing ? "none" : "inline-flex" }}
+        {...rest}
+        // allowClear
+        onBlur={handleBlur}
+      />
+    </>
+  );
 };
 
 function FormAntd() {
@@ -144,12 +183,14 @@ function FormAntd() {
       style={{
         width: 300
       }}
+      labelAlign="right"
       form={form}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       initialValues={{
-        username: "",
-        password: ""
+        username: "1234",
+        password: "1234",
+        age: ""
       }}
     >
       <Form.Item
@@ -176,7 +217,7 @@ function FormAntd() {
           return value;
         }} */
       >
-        <InputComp form={form} />
+        <Input placeholder="username" allowClear />
       </Form.Item>
       <Form.Item
         label="password"
@@ -188,7 +229,19 @@ function FormAntd() {
           }
         ]}
       >
-        <Input.Password allowClear />
+        <Input.Password allowClear placeholder="password" />
+      </Form.Item>
+      <Form.Item
+        label="age"
+        name="age"
+        rules={[
+          {
+            required: true,
+            message: "Please input your age!"
+          }
+        ]}
+      >
+        <AgeInputComp name="age" form={form} />
       </Form.Item>
       <Form.Item>
         <Button htmlType="submit">submit</Button>
