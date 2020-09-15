@@ -75,8 +75,9 @@ const InputComp = (props) => {
     setEditing(true);
   };
   const handleBlur = (e) => {
-    setBordered(!e.target.value);
-    setEditing(false);
+    const bool = !e.target.value;
+    setBordered(bool);
+    setEditing(bool);
   };
   const handleEnter = () => {
     console.log("enter");
@@ -99,6 +100,8 @@ const InputComp = (props) => {
     console.log("value:", value);
     if (!value) {
       setBordered(true);
+      setShowEdit(false);
+      setEditing(true);
       form.validateFields();
     }
   }, [value, form]);
