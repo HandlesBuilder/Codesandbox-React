@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Form, Input, Button } from "antd";
+import { EditOutlined } from "@ant-design/icons";
 import "./index.css";
 
 function FormJS() {
@@ -61,11 +62,78 @@ function FormJS() {
   );
 }
 
+const InputComp = (props) => {
+  const { value } = props;
+  const { form, ...rest } = props;
+  const [bordered, setBordered] = useState(false);
+  const [editing, setEditing] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
+  const inputRef = useRef();
+  const handleFocus = (e) => {
+    setBordered(true);
+    setShowEdit(false);
+    setEditing(true);
+  };
+  const handleBlur = (e) => {
+    setBordered(!e.target.value);
+    setEditing(false);
+  };
+  const handleEnter = () => {
+    console.log("enter");
+    if (!editing) {
+      setShowEdit(true);
+    }
+  };
+  const handleLeave = () => {
+    console.log("leave");
+    if (!editing) {
+      setShowEdit(false);
+    }
+  };
+  const handleEdit = () => {
+    inputRef.current.focus();
+    setShowEdit(false);
+    setEditing(true);
+  };
+  useEffect(() => {
+    console.log("value:", value);
+    if (!value) {
+      setBordered(true);
+      form.validateFields();
+    }
+  }, [value, form]);
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
+      }}
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
+    >
+      <Input
+        ref={inputRef}
+        {...rest}
+        // allowClear
+        placeholder="username"
+        bordered={bordered}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+      />
+      {showEdit ? <EditOutlined onClick={handleEdit} /> : null}
+    </div>
+  );
+};
+
 function FormAntd() {
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
     console.log(values);
+  };
+  const onFinishFailed = ({ values, errorFields, outOfDate }) => {
+    console.log({ values, errorFields, outOfDate });
   };
 
   return (
@@ -75,8 +143,14 @@ function FormAntd() {
       }}
       form={form}
       onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
+      initialValues={{
+        username: "",
+        password: ""
+      }}
     >
       <Form.Item
+        // noStyle
         label="username"
         name="username"
         rules={[
@@ -89,6 +163,8 @@ function FormAntd() {
             message: "Please input your username!"
           }
         ]}
+        // help="Please input your username!!"
+        // extra="Please input your username!!!"
         /* getValueFromEvent={(e) => {
           return e.target.value.replace(/^\s+|\s+$/g, "");
         }} */
@@ -97,7 +173,7 @@ function FormAntd() {
           return value;
         }} */
       >
-        <Input allowClear />
+        <InputComp form={form} />
       </Form.Item>
       <Form.Item
         label="password"
