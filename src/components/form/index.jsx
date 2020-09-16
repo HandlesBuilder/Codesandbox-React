@@ -187,6 +187,45 @@ function FormAntd() {
     console.log({ values, errorFields, outOfDate });
   };
 
+  const handleSetFields = () => {
+    form.setFields([
+      {
+        name: ["test"],
+        touched: false,
+        validating: false,
+        errors: ["test"],
+        value: "test"
+      }
+    ]);
+  };
+
+  const handleSetFieldsValue = () => {
+    form.setFieldsValue({
+      age: "age",
+      test: "test"
+    });
+  };
+
+  const handleResetFields = () => {
+    form.resetFields(["age", "test"]);
+  };
+
+  const handleGetFieldValue = () => {
+    console.log(form.getFieldValue("test"));
+  };
+
+  const handleGetFieldsValue = () => {
+    console.log(form.getFieldsValue(["age", "test"]));
+  };
+
+  const handleGetFieldError = () => {
+    console.log(form.getFieldError("age"));
+  };
+
+  const handleGetFieldsError = () => {
+    console.log(form.getFieldsError(["age", "test"]));
+  };
+
   return (
     <Form
       style={{
@@ -252,8 +291,27 @@ function FormAntd() {
       >
         <AgeInputComp name="age" form={form} />
       </Form.Item>
+      <Form.Item
+        label="test"
+        name="test"
+        rules={[
+          {
+            required: true,
+            message: "Please input your test!"
+          }
+        ]}
+      >
+        <Input />
+      </Form.Item>
       <Form.Item>
         <Button htmlType="submit">submit</Button>
+        <Button onClick={handleSetFields}>setFields</Button>
+        <Button onClick={handleSetFieldsValue}>setFieldsValue</Button>
+        <Button onClick={handleResetFields}>resetFields</Button>
+        <Button onClick={handleGetFieldValue}>getFieldValue</Button>
+        <Button onClick={handleGetFieldsValue}>getFieldsValue</Button>
+        <Button onClick={handleGetFieldError}>getFieldError</Button>
+        <Button onClick={handleGetFieldsError}>getFieldsError</Button>
       </Form.Item>
     </Form>
   );
