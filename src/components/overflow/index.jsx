@@ -5,9 +5,49 @@ import "./index.css";
 
 const str = "这是一段很长的文字，用来做长文本超出省略测试，动态判断是否超出。";
 
+const style = {
+  display: "inline-block",
+  width: "100%",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  whiteSpace: "nowrap"
+};
+
+function Test() {
+  const testRef = useRef();
+  const [bool, setBool] = useState(false);
+  console.log(bool);
+
+  useEffect(() => {
+    /* {
+      x: 184.5,
+      y: 140.5,
+      width: 448,
+      height: 20,
+      top: 140.5,
+      right: 632.5,
+      bottom: 160.5,
+      left: 184.5
+    } */
+    // 另需 resize 功能
+    const { width } = testRef.current.getBoundingClientRect();
+    const { width: wP } = testRef.current.parentNode.getBoundingClientRect();
+    console.log(width, wP);
+    setBool(width > wP);
+  }, []);
+  return (
+    <div className="overflow-container">
+      <span style={bool ? style : { whiteSpace: "nowrap" }} ref={testRef}>
+        {str}
+      </span>
+    </div>
+  );
+}
+
 function OverFlow(props) {
   const { text } = props;
   const txtRef = useRef();
+
   const [hasTips, setHasTips] = useState(false);
 
   useEffect(() => {
@@ -27,16 +67,21 @@ function OverFlow(props) {
       window.removeEventListener("resize", calculateLayout);
     };
   }, [text.length]);
+
   return (
-    <div className="overflow">
-      {hasTips ? (
-        <Tooltip title={text}>
+    <>
+      <div className="overflow">
+        {hasTips ? (
+          <Tooltip title={text}>
+            <p ref={txtRef}>{text}</p>
+          </Tooltip>
+        ) : (
           <p ref={txtRef}>{text}</p>
-        </Tooltip>
-      ) : (
-        <p ref={txtRef}>{text}</p>
-      )}
-    </div>
+        )}
+        <Test />
+      </div>
+      {/* <Test /> */}
+    </>
   );
 }
 
