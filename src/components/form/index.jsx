@@ -143,6 +143,13 @@ const AgeInputComp = (props) => {
       inputRef.current.focus();
     }, 350);
   };
+  const handleEnterKey = (e) => {
+    if (e.nativeEvent.key === "Enter") {
+      e.preventDefault();
+      setEditing(!e.target.value);
+      if (e.target.value) inputRef.current.blur();
+    }
+  };
   useEffect(() => {
     if (!value) {
       setEditing(true);
@@ -163,6 +170,7 @@ const AgeInputComp = (props) => {
         {...rest}
         // allowClear
         onBlur={handleBlur}
+        onKeyPress={handleEnterKey}
       />
     </>
   );
