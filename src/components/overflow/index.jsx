@@ -37,9 +37,15 @@ function Test() {
   }, []);
   return (
     <div className="overflow-container">
-      <span style={bool ? style : { whiteSpace: "nowrap" }} ref={testRef}>
-        {str}
-      </span>
+      {!bool ? (
+        <span style={{ whiteSpace: "nowrap" }} ref={testRef}>
+          {str}
+        </span>
+      ) : (
+        <Tooltip title="test">
+          <span style={style}>{str}</span>
+        </Tooltip>
+      )}
     </div>
   );
 }
