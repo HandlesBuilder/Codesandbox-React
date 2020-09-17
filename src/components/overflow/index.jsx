@@ -1,22 +1,15 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Tooltip } from "antd";
-import { debounce } from "lodash";
+import { useLayOut } from "../../utils/utils";
 import "./index.css";
 
 const str = "这是一段很长的文字，用来做长文本超出省略测试，动态判断是否超出。";
 
-const style = {
-  display: "inline-block",
-  width: "100%",
-  overflow: "hidden",
-  textOverflow: "ellipsis",
-  whiteSpace: "nowrap"
-};
-
-function Test() {
+function Text(props) {
+  const { text } = props;
   const testRef = useRef();
   const [bool, setBool] = useState(false);
-  console.log(bool);
+  const { width } = useLayOut();
 
   useEffect(() => {
     /* {
@@ -29,22 +22,24 @@ function Test() {
       bottom: 160.5,
       left: 184.5
     } */
-    // 另需 resize 功能
-    const { width } = testRef.current.getBoundingClientRect();
-    const { width: wP } = testRef.current.parentNode.getBoundingClientRect();
-    console.log(width, wP);
-    setBool(width > wP);
-  }, []);
+    const { width: childW } = testRef.current.getBoundingClientRect();
+    const {
+      width: parentW
+    } = testRef.current.parentNode.getBoundingClientRect();
+    setBool(childW > parentW);
+  }, [width]);
+
   return (
     <div className="overflow-container">
-      {!bool ? (
-        <span style={{ whiteSpace: "nowrap" }} ref={testRef}>
-          {str}
-        </span>
-      ) : (
-        <Tooltip title="test">
-          <span style={style}>{str}</span>
+      <span className="hidden-text" ref={testRef}>
+        {text}
+      </span>
+      {bool ? (
+        <Tooltip title={text}>
+          <span className="show-tips-text">{text}</span>
         </Tooltip>
+      ) : (
+        <span className="hide-tips-text">{text}</span>
       )}
     </div>
   );
@@ -52,42 +47,10 @@ function Test() {
 
 function OverFlow(props) {
   const { text } = props;
-  const txtRef = useRef();
-
-  const [hasTips, setHasTips] = useState(false);
-
-  useEffect(() => {
-    const calculateLayout = debounce(() => {
-      const baseWidth = window.getComputedStyle(txtRef.current).width;
-      const baseFontSize = window.getComputedStyle(txtRef.current).fontSize;
-      console.log(baseWidth, baseFontSize);
-      const strNum = Math.floor(
-        +baseWidth.slice(0, -2) / +baseFontSize.slice(0, -2)
-      );
-      console.log(text.length, strNum);
-      setHasTips(text.length > strNum);
-    }, 500);
-    calculateLayout();
-    window.addEventListener("resize", calculateLayout);
-    return () => {
-      window.removeEventListener("resize", calculateLayout);
-    };
-  }, [text.length]);
-
   return (
-    <>
-      <div className="overflow">
-        {hasTips ? (
-          <Tooltip title={text}>
-            <p ref={txtRef}>{text}</p>
-          </Tooltip>
-        ) : (
-          <p ref={txtRef}>{text}</p>
-        )}
-        <Test />
-      </div>
-      {/* <Test /> */}
-    </>
+    <div className="overflow">
+      <Text text={text} />
+    </div>
   );
 }
 

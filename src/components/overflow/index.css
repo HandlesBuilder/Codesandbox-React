@@ -1,19 +1,35 @@
 .overflow {
-  width: 300px;
+  width: 40%;
   height: 100px;
   margin: auto;
   border: 1px solid #f00;
 }
 
-.overflow > p {
+.overflow-container {
+  position: relative;
+  width: 100%;
+  margin: auto;
+  border: 1px solid #00f;
+}
+
+.overflow-container .hidden-text {
+  white-space: nowrap;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1000;
+  visibility: hidden;
+}
+
+.overflow-container .show-tips-text {
+  display: inline-block;
+  width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.overflow-container {
-  width: 100%;
-  height: 50px;
-  margin: auto;
-  border: 1px solid #00f;
+.overflow-container .hide-tips-text {
+  white-space: nowrap;
+  color: #f00;
 }

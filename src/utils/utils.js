@@ -1,3 +1,5 @@
+import { useState, useEffect, useCallback } from "react";
+
 export const debounce = function (fn, delay = 300) {
   let timer = null;
   return function (event) {
@@ -26,4 +28,27 @@ export const throttle = function (fn, delay = 300) {
       canRun = true;
     }, delay);
   };
+};
+
+export const useLayOut = () => {
+  const [size, setSize] = useState({
+    width: document.documentElement.clientWidth,
+    hieght: document.documentElement.clientHeight
+  });
+
+  const onResize = useCallback(() => {
+    setSize({
+      width: document.documentElement.clientWidth,
+      height: document.documentElement.clientHeight
+    });
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("resize", onResize);
+    return () => {
+      window.removeEventListener("resize", onResize);
+    };
+  }, [onResize]);
+
+  return size;
 };
