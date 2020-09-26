@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 /* https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
 
@@ -31,8 +31,27 @@ const result = Object.defineProperty(obj, 'foo', {
 // obj.foo = 'test';
 // console.log(result === obj); // true
 
+const userInfo = {};
+Object.defineProperty(userInfo, 'name', {
+	get: function () {
+		return document.getElementById('name').innerHTML;
+	},
+	set: function (name) {
+		document.getElementById('name').innerHTML = name;
+	}
+});
+
 function ObjectDefineProperty() {
-	return <div>{JSON.stringify(result)}</div>;
+	useEffect(() => {
+		userInfo.name = 'Hello, world!';
+	}, []);
+
+	return (
+		<div>
+			<p>{JSON.stringify(result)}</p>
+			<p id="name"></p>
+		</div>
+	);
 }
 
 export default ObjectDefineProperty;
