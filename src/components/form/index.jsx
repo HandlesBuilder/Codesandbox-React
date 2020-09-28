@@ -227,112 +227,137 @@ function FormAntd() {
 	};
 
 	return (
-		<Form
-			style={{
-				width: 300
-			}}
-			labelAlign="right"
-			form={form}
-			onFinish={onFinish}
-			onFinishFailed={onFinishFailed}
-			initialValues={{
-				username: '1234',
-				password: '1234',
-				age: ''
-			}}
-		>
-			<Form.Item
-				// noStyle
-				label="username"
-				name="username"
-				rules={[
-					{
-						required: true,
-						whitespace: true,
-						/* transform: (val) => {
+		<div className="antdForm">
+			<Form
+				style={{
+					width: 500
+				}}
+				labelCol={{ span: 4 }}
+				labelAlign="right"
+				form={form}
+				onFinish={onFinish}
+				onFinishFailed={onFinishFailed}
+				initialValues={{
+					username: '1234',
+					password: '1234',
+					age: ''
+				}}
+			>
+				<Form.Item
+					// noStyle
+					label="username"
+					name="username"
+					rules={[
+						{
+							required: true,
+							whitespace: true,
+							/* transform: (val) => {
               return val.replace(/^\s+|\s+$/g, "");
             }, */
-						message: 'Please input your username!'
-					}
-				]}
-				// help="Please input your username!!"
-				// extra="Please input your username!!!"
-				/* getValueFromEvent={(e) => {
+							message: 'Please input your username!'
+						}
+					]}
+					// help="Please input your username!!"
+					// extra="Please input your username!!!"
+					/* getValueFromEvent={(e) => {
           return e.target.value.replace(/^\s+|\s+$/g, "");
         }} */
-				/* normalize={(value, prevValue, prevValues) => {
+					/* normalize={(value, prevValue, prevValues) => {
           // console.log(value, '=>', prevValue,'=>', prevValues);
           return value;
         }} */
-			>
-				<Input placeholder="username" allowClear />
-			</Form.Item>
-			<Form.Item
-				label="password"
-				name="password"
-				rules={[
-					{
-						required: true,
-						message: 'Please input your password!'
-					}
-				]}
-			>
-				<Input.Password allowClear placeholder="password" />
-			</Form.Item>
-			<Form.Item
-				label="age"
-				name="age"
-				rules={[
-					{
-						required: true,
-						message: 'Please input your age!'
-					}
-				]}
-			>
-				<AgeInputComp name="age" form={form} />
-			</Form.Item>
-			<Form.Item
-				label="test"
-				name="test"
-				rules={[
-					{
-						required: true,
-						message: 'Please input your test!'
-					}
-				]}
-			>
-				<Input />
-			</Form.Item>
-			<Form.Item
-				label="fields"
-				name="fields"
-				rules={[
-					{
-						required: true,
-						message: 'Please input your fields!'
-					}
-				]}
-			>
-				<>
-					<Form.Item noStyle name={['fields', 'lastname']}>
-						<Input style={{ width: '50%' }} />
-					</Form.Item>
-					<Form.Item noStyle name={['fields', 'firstname']}>
-						<Input style={{ width: '50%' }} />
-					</Form.Item>
-				</>
-			</Form.Item>
-			<Form.Item>
-				<Button htmlType="submit">submit</Button>
-				<Button onClick={handleSetFields}>setFields</Button>
-				<Button onClick={handleSetFieldsValue}>setFieldsValue</Button>
-				<Button onClick={handleResetFields}>resetFields</Button>
-				<Button onClick={handleGetFieldValue}>getFieldValue</Button>
-				<Button onClick={handleGetFieldsValue}>getFieldsValue</Button>
-				<Button onClick={handleGetFieldError}>getFieldError</Button>
-				<Button onClick={handleGetFieldsError}>getFieldsError</Button>
-			</Form.Item>
-		</Form>
+				>
+					<Input placeholder="username" allowClear />
+				</Form.Item>
+				<Form.Item
+					label="password"
+					name="password"
+					rules={[
+						{
+							required: true,
+							message: 'Please input your password!'
+						}
+					]}
+				>
+					<Input.Password allowClear placeholder="password" />
+				</Form.Item>
+				<Form.Item
+					label="age"
+					name="age"
+					rules={[
+						{
+							required: true,
+							message: 'Please input your age!'
+						}
+					]}
+				>
+					<AgeInputComp name="age" form={form} />
+				</Form.Item>
+				<Form.Item
+					label="test"
+					name="test"
+					rules={[
+						{
+							required: true,
+							message: 'Please input your test!'
+						}
+					]}
+				>
+					<Input />
+				</Form.Item>
+				<Form.Item
+					label="fields"
+					name="fields"
+					rules={[
+						{
+							required: true,
+							message: 'Please input your fields!'
+						}
+					]}
+				>
+					<>
+						<Form.Item noStyle name={['fields', 'lastname']}>
+							<Input style={{ width: '50%' }} />
+						</Form.Item>
+						<Form.Item noStyle name={['fields', 'firstname']}>
+							<Input style={{ width: '50%' }} />
+						</Form.Item>
+					</>
+				</Form.Item>
+				<Form.Item
+					name="validator"
+					label="validator"
+					validateFirst
+					rules={[
+						{
+							required: true,
+							message: 'Please input your word!'
+						},
+						({ getFieldValue }) => ({
+							validator(rule, value) {
+								if (/^[a-zA-Z]+$/.test(value)) {
+									return Promise.resolve();
+								}
+								return Promise.reject(new Error('Wrong, only support letter!'));
+							}
+						})
+					]}
+				>
+					<Input />
+				</Form.Item>
+				<Form.Item>
+					<Button htmlType="submit">submit</Button>
+					<Button onClick={() => form.resetFields()}>reset</Button>
+					<Button onClick={handleSetFields}>setFields</Button>
+					<Button onClick={handleSetFieldsValue}>setFieldsValue</Button>
+					<Button onClick={handleResetFields}>resetFields</Button>
+					<Button onClick={handleGetFieldValue}>getFieldValue</Button>
+					<Button onClick={handleGetFieldsValue}>getFieldsValue</Button>
+					<Button onClick={handleGetFieldError}>getFieldError</Button>
+					<Button onClick={handleGetFieldsError}>getFieldsError</Button>
+				</Form.Item>
+			</Form>
+		</div>
 	);
 }
 
@@ -340,6 +365,7 @@ function FormDemo() {
 	return (
 		<>
 			<FormJS />
+			<br />
 			<FormAntd />
 		</>
 	);
