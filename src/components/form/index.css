@@ -31,3 +31,15 @@
 	padding: 20px 0 0;
 	border: 1px solid orange;
 }
+
+.spaceWraper {
+	width: 100%;
+}
+
+.editIcon {
+	display: none;
+}
+
+.spaceWraper:hover .editIcon {
+	display: inline-block;
+}

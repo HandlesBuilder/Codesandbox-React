@@ -160,9 +160,9 @@ const AgeInputComp = props => {
 	return (
 		<>
 			{!editing ? (
-				<Space style={{ width: '100%' }} align="start">
+				<Space className="spaceWraper" align="start">
 					<span>{value}</span>
-					<EditOutlined onClick={handleEdit} />
+					<EditOutlined className="editIcon" onClick={handleEdit} />
 				</Space>
 			) : null}
 			<Input
