@@ -177,6 +177,33 @@ const AgeInputComp = props => {
 	);
 };
 
+function InputNumberComp(props) {
+	const { onChange, ...rest } = props;
+	const handleChange = e => {
+		const val = e.target.value;
+
+		// 除数字外，禁止输入
+		if (/[^(\d|.)]/g.test(val)) {
+			onChange(val.replace(/[^(\d|.)]/g, '')); // 替换掉除数字外的所有字符
+			return;
+		}
+
+		// 如果是小数，限制两位小数
+		if (!/^\d*(\.?(\d{1,2})?)?$/.test(val)) {
+			return;
+		}
+
+		// 禁止输入多个 0
+		if (/^0{2,}$/.test(val)) {
+			onChange('0');
+			return;
+		}
+
+		onChange(val);
+	};
+	return <Input {...rest} onChange={handleChange} />;
+}
+
 function FormAntd() {
 	const [form] = Form.useForm();
 
@@ -344,6 +371,30 @@ function FormAntd() {
 					]}
 				>
 					<Input />
+				</Form.Item>
+				<Form.Item
+					name="number"
+					label="number"
+					validateFirst
+					rules={[
+						{
+							required: true,
+							message: '请输入0-10的数字'
+						},
+						{
+							type: 'number',
+							min: 0,
+							max: 10,
+							validator: (rule, value) => {
+								if (value > 10 || value < 0 || /(^\.)|(\.$)/.test(value)) {
+									return Promise.reject(new Error(`请输入0~10范围内的数值`));
+								}
+								return Promise.resolve();
+							}
+						}
+					]}
+				>
+					<InputNumberComp />
 				</Form.Item>
 				<Form.Item>
 					<Button htmlType="submit">submit</Button>
