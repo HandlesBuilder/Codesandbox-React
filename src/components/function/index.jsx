@@ -10,7 +10,7 @@ const fn2 = (a, b, c) => {
 	return false;
 };
 
-function Currying() {
+function Func() {
 	return (
 		<div>
 			<p>name: {fn1.name}</p>
@@ -21,4 +21,4 @@ function Currying() {
 	);
 }
 
-export default Currying;
+export default Func;
