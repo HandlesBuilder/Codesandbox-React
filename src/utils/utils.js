@@ -62,7 +62,16 @@ export const preloadImage = function (path) {
 	});
 };
 
-export const enumFn = (target, key, value)=> {
-	target[target[key] = value] = key;
+export const enumFn = (target, key, value) => {
+	target[(target[key] = value)] = key;
 	return target;
+};
+
+export const Win = {
+	atob: strToBase64 => {
+		return decodeURIComponent(atob(strToBase64));
+	},
+	btoa: str => {
+		return window.btoa(window.encodeURIComponent(str));
+	}
 };
