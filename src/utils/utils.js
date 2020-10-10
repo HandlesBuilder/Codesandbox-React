@@ -61,3 +61,8 @@ export const preloadImage = function (path) {
 		image.src = path;
 	});
 };
+
+export const enumFn = (target, key, value)=> {
+	target[target[key] = value] = key;
+	return target;
+};

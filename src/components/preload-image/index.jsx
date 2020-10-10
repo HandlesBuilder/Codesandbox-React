@@ -7,6 +7,7 @@ function PreloadImg() {
 	useEffect(() => {
 		preloadImage('https://www.dogedoge.com/assets/new_logo.min.png')
 			.then(e => {
+				container.current.childNodes.forEach(node => node.remove());
 				container.current.appendChild(e.target);
 			})
 			.catch(err => {
