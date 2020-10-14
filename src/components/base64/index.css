@@ -1,0 +1,12 @@
+.base64demo {
+	width: 50%;
+	margin: 0 auto;
+	text-align: left;
+}
+.base64demo > p > span:first-child {
+	display: inline-block;
+	width: 50%;
+	margin: 0 10px 0 0;
+	text-align: right;
+	color: red;
+}
