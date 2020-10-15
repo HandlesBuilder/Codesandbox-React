@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHooks } from './components/hooks';
+import { useHooks, useWinSize } from './components/hooks';
 // import Demo from './components/proxy';
 // import Demo from './components/object-define-property';
 // import Demo from './components/form';
@@ -16,9 +16,13 @@ import './styles.css';
 
 export default function App() {
 	const state = useHooks();
+	const { width, height } = useWinSize();
 	return (
 		<div className="App">
 			<h1>Hello {state.name}</h1>
+			<h2>
+				Width: {width} * Height: {height}
+			</h2>
 			<h2>Start editing to see some magic happen!</h2>
 			<Demo />
 		</div>
