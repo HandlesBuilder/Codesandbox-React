@@ -9,7 +9,9 @@
 	grid-template-rows: 1fr 1fr;
 	/* grid-template-columns: repeat(3, 33.33%); */
 	/* grid-template-columns: repeat(auto-fill, 100px); */
-	grid-template-columns: 1fr 1fr 1fr;
+	/* grid-template-columns: 1fr 1fr 1fr; */
+	grid-template-columns: 30px 50px 20px;
+	/* grid-template-columns: repeat(12, 1fr); */
 	/* grid-template-columns: 150px 1fr 2fr; */
 	/* grid-template-columns: 1fr 1fr minmax(100px, 1fr); */
 	/* grid-template-columns: 100px auto 100px; */
@@ -20,6 +22,22 @@
 
 	/* grid-gap: <grid-row-gap> <grid-column-gap>; */
 	grid-gap: 20px 20px;
+
+	/* grid-auto-flow: row; */
+	/* grid-auto-flow: row dense; */
+	/* grid-auto-flow: column; */
+	/* grid-auto-flow: column dense; */
+
+	/* justify-items: start; */
+	/* align-items: center; */
+
+	/* place-items: <align-items> <justify-items>; */
+	/* place-items: center center; */
+
+	/* justify-content: end; */
+	/* align-content: center; */
+	/* place-content: <align-content> <justify-content> */
+	/* place-content: center center; */
 
 	padding: 10px;
 	border: 1px solid blue;
