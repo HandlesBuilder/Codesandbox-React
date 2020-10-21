@@ -65,4 +65,10 @@
 
 	/* grid-area: <row-start> / <column-start> / <row-end> / <column-end>; */
 	grid-area: 2 / 1 / 4 / 3;
+
+	/* justify-self: center; */
+	/* align-self: center; */
+
+	/* place-self: <align-self> <justify-self>; */
+	/* place-self: center center; */
 }
