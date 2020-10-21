@@ -8,7 +8,7 @@ function GirdDemo() {
 		<div className="grid-container">
 			<div className="grid-wraper">
 				{arr.map((item, index) => (
-					<div key={index} className="grid-item">
+					<div key={index} className={`grid-item item${index + 1}`}>
 						{index + 1}
 					</div>
 				))}
