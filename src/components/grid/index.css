@@ -4,9 +4,17 @@
 }
 
 .grid-wraper {
+	/* 指定一个容器采用网格布局。 */
 	display: grid;
-	/* grid-template-rows: repeat(1, 50%); */
+
+	/* grid-template-columns属性定义每一列的列宽，grid-template-rows属性定义每一行的行高。 */
+	/* repeat()接受两个参数，第一个参数是重复的次数，第二个参数是所要重复的值。*/
+	/* 网格布局提供了fr关键字（fraction 的缩写，意为"片段"）。若两列的宽度分别为1fr和2fr，就表示后者是前者的两倍。 */
+	/* minmax()函数产生一个长度范围，表示长度就在这个范围之中。它接受两个参数，分别为最小值和最大值。 */
+	/* auto关键字表示由浏览器自己决定长度。 */
+	/* 若希望每一行（或每一列）容纳尽可能多的单元格，这时可以使用auto-fill关键字表示自动填充。 */
 	grid-template-rows: 1fr 1fr;
+	/* grid-template-rows: repeat(1, 50%); */
 	/* grid-template-columns: repeat(3, 33.33%); */
 	/* grid-template-columns: repeat(auto-fill, 100px); */
 	grid-template-columns: 1fr 1fr 1fr;
@@ -17,9 +25,12 @@
 	/* grid-template-columns: 100px auto 100px; */
 	/* grid-template-columns: 10% 60% 30%; */
 
+	/* grid-row-gap属性设置行与行的间隔（行间距），grid-column-gap属性设置列与列的间隔（列间距）。 */
 	/* grid-row-gap: 20px; */
 	/* grid-column-gap: 20px; */
 
+	/* grid-gap属性是grid-column-gap和grid-row-gap的合并简写形式 */
+	/* 若grid-gap省略了第二个值，浏览器认为第二个值等于第一个值。 */
 	/* grid-gap: <grid-row-gap> <grid-column-gap>; */
 	grid-gap: 20px 20px;
 
