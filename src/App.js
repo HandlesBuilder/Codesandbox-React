@@ -13,7 +13,8 @@ import { useHooks, useWinSize } from './components/hooks';
 // import Demo from './components/count-down';
 // import Demo from './components/json';
 // import Demo from './components/overflow';
-import Demo from './components/grid';
+// import Demo from './components/grid';
+import Demo from './components/recursion';
 import './styles.css';
 
 export default function App() {
