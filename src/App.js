@@ -15,7 +15,8 @@ import { useHooks, useWinSize } from './components/hooks';
 // import Demo from './components/overflow';
 // import Demo from './components/grid';
 // import Demo from './components/recursion';
-import Demo from './components/blob-file';
+// import Demo from './components/blob-file';
+import Demo from './components/render-html';
 import './styles.css';
 
 export default function App() {
