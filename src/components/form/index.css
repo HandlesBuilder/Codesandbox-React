@@ -43,3 +43,8 @@
 .spaceWraper:hover .editIcon {
 	display: inline-block;
 }
+
+.nestedForm {
+	width: 50%;
+	margin: 0 auto;
+}
