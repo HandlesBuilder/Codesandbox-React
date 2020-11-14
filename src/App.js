@@ -2,7 +2,7 @@ import React from 'react';
 import { useHooks, useWinSize } from './components/hooks';
 // import Demo from './components/proxy';
 // import Demo from './components/object-define-property';
-import Demo from './components/form';
+// import Demo from './components/form';
 // import Demo from './components/function';
 // import Demo from './components/function-currying';
 // import Demo from "./components/classname";
@@ -17,6 +17,8 @@ import Demo from './components/form';
 // import Demo from './components/recursion';
 // import Demo from './components/blob-file';
 // import Demo from './components/render-html';
+// import Demo from './components/render-html';
+import Demo from './components/antd-table';
 import './styles.css';
 
 export default function App() {
