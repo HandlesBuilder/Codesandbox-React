@@ -18,7 +18,8 @@ import { useHooks, useWinSize } from './components/hooks';
 // import Demo from './components/blob-file';
 // import Demo from './components/render-html';
 // import Demo from './components/render-html';
-import Demo from './components/antd-table';
+// import Demo from './components/antd-table';
+import Demo from './components/bugs';
 import './styles.css';
 
 export default function App() {
