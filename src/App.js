@@ -21,7 +21,8 @@ import { useHooks, useWinSize } from './components/hooks';
 // import Demo from './components/antd-components';
 // import Demo from './components/bugs';
 // import Demo from './components/get-selection';
-import Demo from './components/reg-exp';
+// import Demo from './components/reg-exp';
+import Demo from './components/react-source-code';
 import './styles.css';
 
 export default function App() {
