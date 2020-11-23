@@ -23,6 +23,18 @@ const CustomizedForm = ({ onChange, fields }) => {
 			>
 				<Input />
 			</Form.Item>
+			<Form.Item
+				name="password"
+				label="Password"
+				rules={[
+					{
+						required: true,
+						message: 'Password is required!'
+					}
+				]}
+			>
+				<Input.Password />
+			</Form.Item>
 		</Form>
 	);
 };
@@ -31,6 +43,10 @@ const FormFileds = () => {
 	const [fields, setFields] = useState([
 		{
 			name: ['username'],
+			value: 'Ant Design'
+		},
+		{
+			name: ['password'],
 			value: 'Ant Design'
 		}
 	]);
