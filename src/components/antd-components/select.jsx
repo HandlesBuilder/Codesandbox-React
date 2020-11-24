@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Select, Pagination } from 'antd';
 
 function CustomSelect() {
-	const [items, setItems] = useState(['foo', 'bar']);
+	const [items] = useState(['foo', 'bar']);
 	return (
 		<Select
 			style={{ width: 300 }}
@@ -17,7 +17,7 @@ function CustomSelect() {
 			)}
 		>
 			{items.map(item => (
-				<Option key={item}>{item}</Option>
+				<Select.Option key={item}>{item}</Select.Option>
 			))}
 		</Select>
 	);
