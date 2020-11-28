@@ -18,11 +18,12 @@ import { useHooks, useWinSize } from './components/hooks';
 // import Demo from './components/blob-file';
 // import Demo from './components/render-html';
 // import Demo from './components/render-html';
-import Demo from './components/antd-components';
+// import Demo from './components/antd-components';
 // import Demo from './components/bugs';
 // import Demo from './components/get-selection';
 // import Demo from './components/reg-exp';
 // import Demo from './components/react-source-code';
+import Demo from './components/class-component';
 import './styles.css';
 
 export default function App() {
