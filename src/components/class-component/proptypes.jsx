@@ -52,6 +52,13 @@ class Child extends Component {
 	}
 }
 
+function Test(props) {
+	return <p>{props.str}</p>;
+}
+Test.propTypes = {
+	str: PropTypes.string.isRequired
+};
+
 class PropTypesComp extends Component {
 	render() {
 		return (
@@ -68,6 +75,7 @@ class PropTypesComp extends Component {
 					}}
 					customProp="no match me, throw warning"
 				/>
+				<Test str="function propTypes" />
 			</div>
 		);
 	}
