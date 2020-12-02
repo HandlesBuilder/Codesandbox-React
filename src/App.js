@@ -23,7 +23,8 @@ import { useHooks, useWinSize } from './components/hooks';
 // import Demo from './components/get-selection';
 // import Demo from './components/reg-exp';
 // import Demo from './components/react-source-code';
-import Demo from './components/class-component';
+// import Demo from './components/class-component';
+import Demo from './components/array';
 import './styles.css';
 
 export default function App() {
