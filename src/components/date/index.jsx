@@ -43,9 +43,9 @@ import moment from 'moment';
 */
 
 function DateComp() {
-	const date = moment('2020-01-01 16:18:02')
-		.add(1, 'day')
-		.format('YYYY-MM-DD HH:mm:ss');
+	const date = moment('2020-01-01 16:18:02');
+	const timestemp = date.valueOf();
+	const formatDate = date.add(1, 'day').format('YYYY-MM-DD HH:mm:ss');
 
 	const d = new Date(date).toLocaleString('zh-CN', {
 		// dateStyle: 'full',
@@ -61,7 +61,8 @@ function DateComp() {
 	});
 	return (
 		<div>
-			<p>moment add 1 day: {date}</p>
+			<p>timestemp: {timestemp}</p>
+			<p>moment add 1 day: {formatDate}</p>
 			<p>toLocaleDateString: {d}</p>
 		</div>
 	);
