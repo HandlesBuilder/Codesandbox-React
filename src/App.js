@@ -26,8 +26,9 @@ import { useHooks, useWinSize } from './components/hooks';
 // import Demo from './components/class-component';
 // import Demo from './components/array';
 // import Demo from './components/custom-copy';
-import Demo from './components/custom-paste';
+// import Demo from './components/custom-paste';
 // import Demo from './components/date';
+import Demo from './components/hooks/useContext';
 import './styles.css';
 
 export default function App() {
