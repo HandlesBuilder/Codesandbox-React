@@ -1,3 +1,4 @@
+import { random } from 'lodash';
 import { useState, useEffect, useCallback } from 'react';
 
 export const debounce = function (fn, delay = 300) {
@@ -74,4 +75,29 @@ export const Win = {
 	btoa: str => {
 		return window.btoa(window.encodeURIComponent(str));
 	}
+};
+
+export const getRandomCode = (length = 8) => {
+	// ASCII:
+	// 数字：48-57
+	// 大写字母：65-90
+	// 小写字母: 97-122
+	// _.random([lower=0], [upper=1], [floating])
+	// String.fromCharCode(104, 101, 108, 108, 111); // "hello"
+	const range = [
+		[48, 57],
+		[65, 90],
+		[97, 122]
+	];
+	const min = 0;
+	const max = range.length - 1;
+	const getNum = () => {
+		const params = range[random(min, max)];
+		return random.apply(this, params);
+	};
+	const arr = [];
+	while (arr.length < length) {
+		arr.push(getNum());
+	}
+	return String.fromCharCode.apply(this, arr);
 };
