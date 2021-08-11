@@ -18,7 +18,7 @@ import { useHooks, useWinSize } from './components/hooks';
 // import Demo from './components/blob-file';
 // import Demo from './components/render-html';
 // import Demo from './components/render-html';
-// import Demo from './components/antd-components';
+import Demo from './components/antd-components';
 // import Demo from './components/bugs';
 // import Demo from './components/get-selection';
 // import Demo from './components/reg-exp';
@@ -28,7 +28,7 @@ import { useHooks, useWinSize } from './components/hooks';
 // import Demo from './components/custom-copy';
 // import Demo from './components/custom-paste';
 // import Demo from './components/date';
-import Demo from './components/hooks/useContext';
+// import Demo from './components/hooks/useContext';
 import './styles.css';
 
 export default function App() {
